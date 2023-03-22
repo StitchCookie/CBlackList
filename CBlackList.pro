@@ -1,7 +1,7 @@
 QT -= gui
 QT += core gui sql network
 
-CONFIG += c++11 console
+CONFIG += c++11
 CONFIG -= app_bundle
 CONFIG +=debug_and_release
 CONFIG(debug,debug|release){
@@ -32,7 +32,8 @@ SOURCES += \
         apihandler.cpp \
         icreadergui.cpp \
         logrecord/logrecord.cpp \
-        main.cpp
+        main.cpp \
+        pub/systemconfig.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -53,4 +54,5 @@ HEADERS += \
     HTTPServer/utilities.h \
     apihandler.h \
     icreadergui.h \
-    logrecord/logrecord.h
+    logrecord/logrecord.h \
+    pub/systemconfig.h

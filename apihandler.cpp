@@ -1,9 +1,15 @@
 #include "apihandler.h"
-#pragma execution_character_set(“utf-8”)
 apihandler::apihandler()
 {
     this->moveToThread(&m_pThread);
     m_pThread.start();
+}
+
+apihandler::~apihandler()
+{
+    m_pThread.quit();
+    m_pThread.wait();
+    //m_pThread.deleteLater();
 }
 
 int apihandler::handler(const Http_Request_Info & req, Http_Respone_Info & reply)

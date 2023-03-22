@@ -18,6 +18,7 @@ class apihandler : public QObject, public enable_singleton<apihandler>
     Q_OBJECT
 public:
     apihandler();
+    ~apihandler();
 
     /* 请求处理函数 */
     static int handler(const Http_Request_Info & req, Http_Respone_Info & reply);

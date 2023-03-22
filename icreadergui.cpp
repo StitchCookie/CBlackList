@@ -2,10 +2,6 @@
 #include<QTime>
 #include <QtGlobal>
 #include <QTextCodec>
-
-/**--------------------------------读写器类-------------------------------------------
------------------------------------------------------------------------------------**/
-
 Tool_ICReader::Tool_ICReader(QObject *parent) : QObject(parent)
 {
     m_nHandle = 0;
