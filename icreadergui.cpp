@@ -1,6 +1,7 @@
 #include "icreadergui.h"
 #include<QTime>
 #include <QtGlobal>
+#include <QStringList>
 #include <QTextCodec>
 Tool_ICReader::Tool_ICReader(QObject *parent) : QObject(parent)
 {
@@ -63,7 +64,7 @@ QString Tool_ICReader::removeZeroChar(QString text)
     int length = temp.size();
     for(int i =0 ; i< length; ++i)
     {
-        if(temp.right(1)=='0')
+        if(temp.right(1).compare("0")==0)
         {
             ++a;
             temp = temp.left(temp.length()-1);

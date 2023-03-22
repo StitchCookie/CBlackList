@@ -33,10 +33,11 @@
 #include <unordered_map>
 #include <memory>
 #include <QReadWriteLock>
-
+#include <QStringList>
 #ifdef USING_LOG_THREAD
 #include <thread>
 #include <functional>
+
 #include <condition_variable>
 #include <atomic>
 #endif

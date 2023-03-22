@@ -1,5 +1,5 @@
 QT -= gui
-QT += core gui sql network
+QT += core sql network
 
 CONFIG += c++11
 CONFIG -= app_bundle
@@ -33,7 +33,9 @@ SOURCES += \
         icreadergui.cpp \
         logrecord/logrecord.cpp \
         main.cpp \
-        pub/systemconfig.cpp
+        pub/systemconfig.cpp \
+    sql/cblacklistsql.cpp \
+    mainmutual.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -55,4 +57,6 @@ HEADERS += \
     apihandler.h \
     icreadergui.h \
     logrecord/logrecord.h \
-    pub/systemconfig.h
+    pub/systemconfig.h \
+    sql/cblacklistsql.h \
+    mainmutual.h
