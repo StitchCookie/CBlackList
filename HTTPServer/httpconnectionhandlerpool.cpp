@@ -34,7 +34,6 @@ HttpConnectionHandler* HttpConnectionHandlerPool::getConnectionHandler()
                 break;
             }
         }
-        vLogDebug("1111111111111111111111111111");
         // 找不到则创建
         if (!pFreeHandler)
         {

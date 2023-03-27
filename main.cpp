@@ -1,11 +1,12 @@
 #include <QCoreApplication>
 #include <HTTPServer/listen.h>
+#include <sql/sqlrequesthandle.h>
+#include <HTTPClient/httpclienthandle.h>
 #include "apihandler.h"
 #include "pub/systemconfig.h"
 #include <execinfo.h>
 #include <signal.h>
 #include <fcntl.h>
-#include <mainmutual.h>
 
 void dump(int signo)
 {
@@ -72,7 +73,7 @@ int CheckOnly()
         return 0;
     }
 
-    //程序退出后，文件自动解锁
+    //程序退出后，文件自动
     return 1;
 }
 
@@ -102,7 +103,8 @@ int main(int argc, char *argv[])
     vLogDebug("系统配置文件读取成功");
     qDebug("系统配置文件读取成功");
     //HttpStartListen::getInstance().start(6666,apihandler::getInstance().handler);
-    sqlRequestHandle *sqlDatabase = new sqlRequestHandle();
+    sqlRequestHandle *sqlDatabase = new sqlRequestHandle;
+    httpClientHandle *requesthandle = new httpClientHandle;
     HttpStartListen::getInstance().start(m_baseInfo.cBLackResponse.responsePort,apihandler::getInstance().handler);
     return a.exec();
 }

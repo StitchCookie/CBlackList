@@ -10,8 +10,12 @@
 #include <QNetworkReply>
 #include "httpdefine.h"
 #include <QVariantMap>
-#include <QTextCodec>
 #include "hiredis/hiredis.h"
+#include  <QByteArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonParseError>
+#include <QTextCodec>
 /*delete object*/
 #define DEL_OBJECT(OBJECT) {if(OBJECT) delete OBJECT; OBJECT = nullptr;}
 #define REQUEST_TIMEOUT m_baseInfo.cBlackListRequest.requestOvertime
@@ -20,12 +24,10 @@ class httpClientHandle : public QObject
     Q_OBJECT
 public:
     explicit httpClientHandle();
-    inline void setHttpRequestOvertime(int overtime)
-    {
-        m_overTime = overtime;
-    }
-    bool dealData(const QByteArray &pArray, QJsonObject &pJson);
-
+    bool dealData(const QByteArray &array,QJsonObject &jsondata);
+    void packRequset(QByteArray &postdata);
+    void setRedisDatabase(QString m_ip,int m_port,int m_No,QString m_Passwd,int m_exitTime);
+    bool connectRedis();
     QString Utf8hexqstringToGbkhexqstring(const QString &text);
 
 
@@ -38,27 +40,18 @@ public:
 signals:
 
 public slots:
-    void dealPost(QByteArray lineGrantryCarData);
+    void dealPost();
 
-    /* 获取线程忙碌时间(超过一定阈值,很可能会出现异常,需要释放连接) */
-    quint64 busyTime();
-    quint64 idleTime();
 private:
-
+    QVariantMap m_map;
     /* 工作线程 */
     QThread* m_pThread;
-    /* 忙碌状态 */
-    bool m_isBusy;
-    QDateTime m_dtBusyBeginTime;
-    QDateTime m_dtBusyEndTime;
     /**/
     QNetworkAccessManager   *m_NetManager;
     QString                 m_URL;
     QNetworkRequest         m_request;
     QNetworkReply          *m_reply;
     bool                    m_redisStatus;
-    /*  overTime*/
-    int m_overTime;
     /*redis handle  Maintain a connection one per thread*/
     QString m_ip;
     int m_port;
@@ -66,6 +59,7 @@ private:
     QString m_Passwd;
     int m_exitTime;
     redisContext *m_ctx;
+    LineGrantrySQLData m_LineGrantrySQLData;
 private slots:
 };
 #endif // HTTPCLIENTHANDLE_H

@@ -35,13 +35,8 @@ SOURCES += \
         main.cpp \
         pub/systemconfig.cpp \
     sql/cblacklistsql.cpp \
-    mainmutual.cpp \
-    HTTPClient/httpclient.cpp \
     sql/sqlrequesthandle.cpp \
-    HTTPClient/httpclienthandle.cpp \
-    HTTPClient/httpclienthandlepool.cpp \
-    HTTPClient/httprequesthandler.cpp \
-    handlerequestrespone.cpp
+    HTTPClient/httpclienthandle.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -68,12 +63,7 @@ HEADERS += \
     logrecord/logrecord.h \
     pub/systemconfig.h \
     sql/cblacklistsql.h \
-    mainmutual.h \
-     HTTPClient/httpclient.h \
     sql/sqltypedefine.h \
     sql/sqlrequesthandle.h \
     HTTPClient/httpclienthandle.h \
-    HTTPClient/httpclienthandlepool.h \
-    HTTPClient/httprequesthandler.h \
-    HTTPClient/httpdefine.h \
-    handlerequestrespone.h
+    HTTPClient/httpdefine.h

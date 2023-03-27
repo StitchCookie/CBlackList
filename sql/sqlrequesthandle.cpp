@@ -38,7 +38,7 @@ QString sqlRequestHandle::Utf8hexqstringToGbkhexqstring(const QString &text)
 
 void sqlRequestHandle::sqlThreadWorking()
 {
-    m_httpclient = new HttpClient;
+    //m_httpclient = new HttpClient;
     //[0]设置数据库连接信息
     if(setConnectBase(m_baseInfo.grantrayMysqlConfig.ip,m_baseInfo.grantrayMysqlConfig.port,m_baseInfo.grantrayMysqlConfig.user,
                       m_baseInfo.grantrayMysqlConfig.passwd,m_baseInfo.grantrayMysqlConfig.databaseName,sqlConnectType::mysql))
@@ -58,7 +58,7 @@ sqlRequestHandle::~sqlRequestHandle()
     m_thread.quit();
     m_thread.wait();
     m_thread.deleteLater();
-    m_httpclient->deleteLater();
+   // m_httpclient->deleteLater();
 }
 
 void sqlRequestHandle::dealSqlData()
@@ -95,6 +95,7 @@ void sqlRequestHandle::dealSqlData()
         m_data.obuid = m_query.value(1).toString();
         m_data.license = m_query.value(2).toString();
         m_qqueueData.enqueue(m_data);
+        qDebug()<<"enqueue size is :"<<m_qqueueData.size();
        // m_httpclient->incoming_MysqlData(m_bytearray);
     }
     m_interverTime->setInterval(m_baseInfo.grantrayMysqlConfig.intervalTime * 1000 * 60);
