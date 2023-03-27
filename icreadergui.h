@@ -20,16 +20,15 @@
 #include <QJsonDocument>
 QT_BEGIN_NAMESPACE
 
-
-//IC读卡器类
-class Tool_ICReader : public QObject, public enable_singleton<Tool_ICReader>
+class ToolIcreader : public QObject, public enable_singleton<ToolIcreader>
 {
     Q_OBJECT
 
 public:
-    explicit Tool_ICReader(QObject *parent = nullptr);
+    explicit ToolIcreader(QObject *parent = nullptr);
+    ~ToolIcreader();
     /* API接口 */
-    int IC_API(const QString &APi_Name, const QJsonObject &json, QByteArray& baRes,QString ip);
+    int IC_API(const QString &APi_Name, const   QString &json, QByteArray& baRes);
 
     /*utf-8转GBK编码*/
     QString HexQString_to_QString(const QString &text);
@@ -41,7 +40,8 @@ private:
     /* 互斥锁 */
     QMutex m_lock;
     QSqlDatabase DB;
-
+    bool m_redisStatus;
+    static int count ;
 private:
     int m_nHandle;
 };

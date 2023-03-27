@@ -30,7 +30,7 @@ HttpConnectionHandler* HttpConnectionHandlerPool::getConnectionHandler()
             if (handler && !handler->isBusy())
             {
                 pFreeHandler = handler;
-                pFreeHandler->setBusy();
+                pFreeHandler->setBusy(true);
                 break;
             }
         }

@@ -9,7 +9,7 @@ apihandler::~apihandler()
 {
     m_pThread.quit();
     m_pThread.wait();
-    //m_pThread.deleteLater();
+    m_pThread.deleteLater();
 }
 
 int apihandler::handler(const Http_Request_Info & req, Http_Respone_Info & reply)
@@ -26,30 +26,14 @@ int apihandler::handler(const Http_Request_Info & req, Http_Respone_Info & reply
 
     QString API_Type = pathList.at(3);
     QString API_Name = pathList.at(4);
-    QByteArray body = req.body.toUtf8();
-     vLogInfo("[ApiHandler] 收到请求,接口名:%s,请求名:%s,请求体:%s", API_Type.toUtf8().data(), API_Name.toUtf8().data(), body.data());
-    //解析请求体
-    QJsonObject json;
-    if (false == analysisHttpBody(body, json))
-    {
-         qDebug()<<"请求内容失败:";
-        QString aaa = "{\"info\":\"请求内容解析失败\"}";
-        QByteArray bbb = aaa.toUtf8();
-        respone(-1, bbb, API_Type, API_Name, reply);
-        return reply.code;
-    }
-    //    //状态监测接口
-    if (API_Type == "reader")
-    {
+    QString carPlate = req.body;
         QByteArray p_OutputData = "";
-        int ret = Tool_ICReader::getInstance().IC_API(API_Name, json, p_OutputData,req.ip);
-        qDebug()<<"响应读卡器打开";
-        //respone(ret == IC_NO_ERR ? 0 : 1, p_OutputData, API_Type, API_Name, reply);
-    }
+        int ret = ToolIcreader::getInstance().IC_API(API_Name, carPlate, p_OutputData);
+        respone(ret == 0 ? 0 : 1, p_OutputData, API_Type, API_Name, reply);
 
-    return reply.code;
+
+        return reply.code;
 }
-
 
 
 bool apihandler::analysisHttpBody(const QByteArray &pBody, QJsonObject &json)

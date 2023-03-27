@@ -2,32 +2,58 @@
 #include <QDebug>
 #include "pub/systemconfig.h"
 #include <QSqlError>
+#include <QSqlQuery>
 CBlackListSql::CBlackListSql(QObject *parent) : QObject(parent)
+{  
+}
+/**
+ * @brief CBlackListSql::setConnectBase
+ * @param ip
+ * @param port
+ * @param user
+ * @param passwd
+ * @param databaseName
+ * @return 返回数据库驱动加载状态
+ */
+bool CBlackListSql::setConnectBase(QString ip, quint16 port, QString user, QString passwd, QString databaseName,QString type)
 {
     QStringList sqlDrivers = QSqlDatabase::drivers();
     qDebug()<<sqlDrivers<<__FILE__;
-    DB.addDatabase("QMYSQL");
-    if(DB.isValid())
-    {
-        qDebug()<<"MYSQL数据库驱动无效";
-    }
-    DB.setHostName(m_baseInfo.grantrayMysqlConfig.ip);
-    DB.setPort(m_baseInfo.grantrayMysqlConfig.port);
-    DB.setDatabaseName(m_baseInfo.grantrayMysqlConfig.databaseName);
-    DB.setUserName(m_baseInfo.grantrayMysqlConfig.user);
-    DB.setPassword(m_baseInfo.grantrayMysqlConfig.passwd);
-    qDebug()<<m_baseInfo.grantrayMysqlConfig.ip<<m_baseInfo.grantrayMysqlConfig.port<<m_baseInfo.grantrayMysqlConfig.databaseName
-           <<m_baseInfo.grantrayMysqlConfig.user<<m_baseInfo.grantrayMysqlConfig.passwd;
+    DB = QSqlDatabase::addDatabase(type);
+    DB.setHostName(ip);
+    DB.setPort(port);
+    DB.setDatabaseName(databaseName);
+    DB.setUserName(user);
+    DB.setPassword(passwd);
+    return DB.isValid();
+}
+
+/**
+ * @brief CBlackListSql::getHandleData
+ * @param selectSql
+ * @return  返回查询结果
+ */
+QSqlQuery CBlackListSql::getHandleData(const QString selectSql,bool &ok)
+{
     if(DB.open())
     {
+        ok = true;
         qDebug()<<"数据库打开成功";
     }else{
-         qDebug()<<"数据库打开error"<<DB.lastError().text();
+        qDebug()<<"数据库打开error"<<DB.lastError().text();
+        ok = false;
     }
-    //    if(DB.close())
-    //    {
-    //        qDebug()<<"数据库关闭成功";
-    //    }
+    QSqlQuery query(DB);
+    if(!query.exec(selectSql))
+    {
+        qDebug()<<"查询失败"<<DB.lastError().text();
+        ok = false;
+    }else{
+        ok = true;
+        qDebug()<<"success";
+    }
+    DB.close();
+    return query;
 }
 
 CBlackListSql::~CBlackListSql()

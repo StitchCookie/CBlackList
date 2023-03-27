@@ -22,7 +22,6 @@ public:
 
     /* 请求处理函数 */
     static int handler(const Http_Request_Info & req, Http_Respone_Info & reply);
-
 private:
     /* 解析报文内容 */
     static bool analysisHttpBody(const QByteArray &pBody, QJsonObject &json);

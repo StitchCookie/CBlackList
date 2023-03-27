@@ -5,9 +5,17 @@
 #include <QObject>
 #include <QMutex>
 #include <qatomic.h>
-#define SySConfigPATH "./c_black_Configinfo.ini"
+#include <QQueue>
+#define SySConfigPATH "../c_black_Configinfo.ini"
 
 #pragma pack(1)
+/*Lane Info*/
+struct LaneBase_Info
+{
+    int laneId;
+    int provid;
+    int statinid;
+};
 /*主线门架系统配置*/
 struct GrantrayMysqlConfig
 {
@@ -33,11 +41,10 @@ struct GrantrayMysqlConfig
 /*请求黑名单服务器信息配置*/
 struct CBlackListRequestInfo
 {
-    QString requestAddr;
-    quint16 requestPort;
+    QString requestUrl;
     quint8  requestOvertime;     //请求超时时间
     CBlackListRequestInfo(){
-        requestAddr.clear();
+        requestUrl.clear();
         requestOvertime = 1;     //单位分钟
     }
 };
@@ -57,10 +64,10 @@ struct CBLackResponseInfo
 struct LoaclRedisInfo
 {
     QString redisIp;
-    quint16 redisPort;
+    int redisPort;
     QString redisPasswd;
-    quint8  redisNo;           //Redis库 默认15号库
-    quint8  existTime;         //Redis键值生存时间
+    int  redisNo;           //Redis库 默认15号库
+    int  existTime;         //Redis键值生存时间
     LoaclRedisInfo()
     {
         redisIp.clear();
@@ -82,8 +89,22 @@ struct BaseInfo{
     CBlackListRequestInfo    cBlackListRequest;
     CBLackResponseInfo       cBLackResponse;
     LoaclRedisInfo           loaclRedis;
+    LaneBase_Info            laneBase_Info;
     sys_switch               sys_Switch;
 };
+
+struct LineGrantrySQLData{
+    QString etcCardId;
+    QString license;
+    QString obuid;
+    LineGrantrySQLData(){
+        etcCardId.clear();
+        license.clear();
+        obuid.clear();
+    }
+};
+
+extern QQueue<LineGrantrySQLData> m_qqueueData;
 extern BaseInfo m_baseInfo;
 #pragma pack()    //恢复对齐状态
 
@@ -101,6 +122,7 @@ public:
     static bool set_HttpRequest_info(BaseInfo& baseInfo);
     static bool set_HttpResponse_info(BaseInfo& baseInfo);
     static bool set_Redis_info(BaseInfo& baseInfo);
+    static bool setLanebaseInfo(BaseInfo& baseInfo);
 private:
     SystemConfig() = default;
     SystemConfig(const SystemConfig& T) = delete;

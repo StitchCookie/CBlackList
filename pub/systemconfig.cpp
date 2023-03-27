@@ -30,11 +30,10 @@ bool SystemConfig::set_Mysql_info(BaseInfo& baseInfo)
 bool SystemConfig::set_HttpRequest_info(BaseInfo& baseInfo)
 {
     QSettings *sysconfig =new QSettings(SySConfigPATH,QSettings::IniFormat);
-    baseInfo.cBlackListRequest.requestAddr=sysconfig->value("HTTPREQUSET/requestAddr").toString();
-    baseInfo.cBlackListRequest.requestPort=static_cast<quint16>(sysconfig->value("HTTPREQUSET/requestPort").toUInt());
+    baseInfo.cBlackListRequest.requestUrl=sysconfig->value("HTTPREQUSET/url").toString();
     baseInfo.cBlackListRequest.requestOvertime=static_cast<quint8>(sysconfig->value("HTTPREQUSET/requestOvertime").toUInt());
     delete  sysconfig;
-    if(baseInfo.cBlackListRequest.requestAddr.isEmpty())
+    if(baseInfo.cBlackListRequest.requestUrl.isEmpty())
     {
         vLogDebug("[set_HttpRequest_info]:请检查黑名单请求服务配置信息");
 
@@ -62,10 +61,10 @@ bool SystemConfig::set_Redis_info(BaseInfo& baseInfo)
 {
     QSettings *sysconfig =new QSettings(SySConfigPATH,QSettings::IniFormat);
     baseInfo.loaclRedis.redisIp = sysconfig->value("REDIS/ip").toString();
-    baseInfo.loaclRedis.redisPort = static_cast<quint16>(sysconfig->value("REDIS/port").toUInt());
+    baseInfo.loaclRedis.redisPort = static_cast<int>(sysconfig->value("REDIS/port").toInt());
     baseInfo.loaclRedis.redisPasswd = sysconfig->value("REDIS/passwd").toString();
-    baseInfo.loaclRedis.redisNo = static_cast<quint8>(sysconfig->value("REDIS/redisNo").toUInt());
-    baseInfo.loaclRedis.existTime = static_cast<quint8>(sysconfig->value("REDIS/exitTime").toUInt());
+    baseInfo.loaclRedis.redisNo = static_cast<int>(sysconfig->value("REDIS/redisNo").toInt());
+    baseInfo.loaclRedis.existTime = static_cast<int>(sysconfig->value("REDIS/exitTime").toInt());
     baseInfo.sys_Switch.redisPasswdForbid = static_cast<quint8>(sysconfig->value("SWITCH/redis_UsePassd").toUInt());
     delete  sysconfig;
     if(baseInfo.loaclRedis.redisIp.isEmpty() ||  baseInfo.loaclRedis.redisNo>15)
@@ -74,5 +73,15 @@ bool SystemConfig::set_Redis_info(BaseInfo& baseInfo)
         return false;
     }
     baseInfo.loaclRedis.existTime = baseInfo.loaclRedis.existTime > 15 ? 15 : baseInfo.loaclRedis.existTime;
+    return true;
+}
+
+bool SystemConfig::setLanebaseInfo(BaseInfo &baseInfo)
+{
+    QSettings *sysconfig =new QSettings(SySConfigPATH,QSettings::IniFormat);
+    baseInfo.laneBase_Info.provid = sysconfig->value("BASELINE/provId").toInt();
+    baseInfo.laneBase_Info.laneId = sysconfig->value("BASELINE/laneid").toInt();
+    baseInfo.laneBase_Info.statinid = sysconfig->value("BASELINE/stationId").toInt();
+    delete  sysconfig;
     return true;
 }

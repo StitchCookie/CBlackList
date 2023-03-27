@@ -1,0 +1,168 @@
+********New Segment OCCUR********
+2023-03-25 23:32:13
+*********************************
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x80618e1]
+[0xb7757400]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Network.so.5(_ZN21QNetworkAccessManager4postERK15QNetworkRequestP9QIODevice+0xc) [0xb7601fbc]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Network.so.5(_ZN21QNetworkAccessManager4postERK15QNetworkRequestRK10QByteArray+0x72) [0xb7602062]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x80676cb]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x806b582]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN14QMetaCallEvent13placeMetaCallEP7QObject+0xa3) [0xb7372793]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN7QObject5eventEP6QEvent+0x2d9) [0xb7377509]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN23QCoreApplicationPrivate13notify_helperEP7QObjectP6QEvent+0x89) [0xb733f0f9]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN16QCoreApplication6notifyEP7QObjectP6QEvent+0x64) [0xb733f164]
+
+********New Segment OCCUR********
+2023-03-25 23:33:45
+*********************************
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x80618e1]
+[0xb76e5400]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Network.so.5(_ZN21QNetworkAccessManager4postERK15QNetworkRequestP9QIODevice+0xc) [0xb758ffbc]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Network.so.5(_ZN21QNetworkAccessManager4postERK15QNetworkRequestRK10QByteArray+0x72) [0xb7590062]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x80676cb]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x806b582]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN14QMetaCallEvent13placeMetaCallEP7QObject+0xa3) [0xb7300793]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN7QObject5eventEP6QEvent+0x2d9) [0xb7305509]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN23QCoreApplicationPrivate13notify_helperEP7QObjectP6QEvent+0x89) [0xb72cd0f9]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN16QCoreApplication6notifyEP7QObjectP6QEvent+0x64) [0xb72cd164]
+
+********New Segment OCCUR********
+2023-03-25 23:34:15
+*********************************
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x80618e1]
+[0xb7774400]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Network.so.5(_ZN21QNetworkAccessManager4postERK15QNetworkRequestP9QIODevice+0xc) [0xb761efbc]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Network.so.5(_ZN21QNetworkAccessManager4postERK15QNetworkRequestRK10QByteArray+0x72) [0xb761f062]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8067734]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x806b600]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN14QMetaCallEvent13placeMetaCallEP7QObject+0xa3) [0xb738f793]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN7QObject5eventEP6QEvent+0x2d9) [0xb7394509]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN23QCoreApplicationPrivate13notify_helperEP7QObjectP6QEvent+0x89) [0xb735c0f9]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN16QCoreApplication6notifyEP7QObjectP6QEvent+0x64) [0xb735c164]
+
+********New Segment OCCUR********
+2023-03-25 23:34:23
+*********************************
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x80618e1]
+[0xb7725400]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Network.so.5(_ZN21QNetworkAccessManager4postERK15QNetworkRequestP9QIODevice+0xc) [0xb75cffbc]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Network.so.5(_ZN21QNetworkAccessManager4postERK15QNetworkRequestRK10QByteArray+0x72) [0xb75d0062]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8067734]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x806b600]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN14QMetaCallEvent13placeMetaCallEP7QObject+0xa3) [0xb7340793]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN7QObject5eventEP6QEvent+0x2d9) [0xb7345509]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN23QCoreApplicationPrivate13notify_helperEP7QObjectP6QEvent+0x89) [0xb730d0f9]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN16QCoreApplication6notifyEP7QObjectP6QEvent+0x64) [0xb730d164]
+
+********New Segment OCCUR********
+2023-03-26 14:52:14
+*********************************
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8062001]
+[0xb7701400]
+/lib/i386-linux-gnu/libc.so.6(+0x839c6) [0xb6dab9c6]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN8QVariantC2EPKc+0x4c) [0xb73338ec]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x805774c]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x805682e]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8055776]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x804f608]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x804f2ff]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x806b7ad]
+
+********New Segment OCCUR********
+2023-03-26 14:52:16
+*********************************
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8062001]
+[0xb7701400]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Network.so.5(_ZN35QNetworkConfigurationManagerPrivate11pollEnginesEv+0xbd) [0xb75f6b1d]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Network.so.5(+0x124470) [0xb767b470]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN11QMetaObject8activateEP7QObjectiiPPv+0x327) [0xb731ef97]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN11QMetaObject8activateEP7QObjectPKS_iPPv+0x3b) [0xb731fc0b]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN6QTimer7timeoutENS_14QPrivateSignalE+0x35) [0xb73a8815]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN6QTimer10timerEventEP11QTimerEvent+0x4b) [0xb732dbbb]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN7QObject5eventEP6QEvent+0xb4) [0xb73212e4]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN23QCoreApplicationPrivate13notify_helperEP7QObjectP6QEvent+0x89) [0xb72e90f9]
+
+********New Segment OCCUR********
+2023-03-26 14:53:00
+*********************************
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8062001]
+[0xb77ba400]
+/lib/i386-linux-gnu/libc.so.6(+0x839c6) [0xb6e649c6]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN8QVariantC2EPKc+0x4c) [0xb73ec8ec]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x805774c]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x805682e]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8055776]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x804f608]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x804f2ff]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x806b7ad]
+
+********New Segment OCCUR********
+2023-03-26 14:53:34
+*********************************
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8062001]
+[0xb77ba400]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Sql.so.5(_ZN12QSqlDatabase4openEv+0x3c) [0xb7787d9c]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x80645b5]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8065f6e]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x806734e]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8067302]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x806728d]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN11QMetaObject8activateEP7QObjectiiPPv+0x4e3) [0xb73d8153]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN11QMetaObject8activateEP7QObjectPKS_iPPv+0x3b) [0xb73d8c0b]
+
+********New Segment OCCUR********
+2023-03-26 14:58:23
+*********************************
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8062031]
+[0xb773b400]
+/lib/i386-linux-gnu/libc.so.6(+0x839c6) [0xb6de59c6]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN8QVariantC2EPKc+0x4c) [0xb736d8ec]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x805777c]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x805682e]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8055776]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x804f608]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x804f2ff]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x806b7b1]
+
+********New Segment OCCUR********
+2023-03-26 14:58:30
+*********************************
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8062031]
+[0xb773b400]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Network.so.5(_ZN35QNetworkConfigurationManagerPrivate11pollEnginesEv+0xbd) [0xb7630b1d]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Network.so.5(+0x124470) [0xb76b5470]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN11QMetaObject8activateEP7QObjectiiPPv+0x327) [0xb7358f97]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN11QMetaObject8activateEP7QObjectPKS_iPPv+0x3b) [0xb7359c0b]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN6QTimer7timeoutENS_14QPrivateSignalE+0x35) [0xb73e2815]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN6QTimer10timerEventEP11QTimerEvent+0x4b) [0xb7367bbb]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN7QObject5eventEP6QEvent+0xb4) [0xb735b2e4]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN23QCoreApplicationPrivate13notify_helperEP7QObjectP6QEvent+0x89) [0xb73230f9]
+
+********New Segment OCCUR********
+2023-03-26 15:00:01
+*********************************
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8061fef]
+[0xb774c400]
+/lib/i386-linux-gnu/libc.so.6(+0x839c6) [0xb6df69c6]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN8QVariantC2EPKc+0x4c) [0xb737e8ec]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x805775a]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x805682e]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8055776]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x804f608]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x804f2ff]
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x806b76f]
+
+********New Segment OCCUR********
+2023-03-26 15:00:02
+*********************************
+/root/Desktop/CCheckBlack/CBlackList/build/BlackListd() [0x8061fef]
+[0xb774c400]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Network.so.5(_ZN35QNetworkConfigurationManagerPrivate11pollEnginesEv+0xbd) [0xb7641b1d]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Network.so.5(+0x124470) [0xb76c6470]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN11QMetaObject8activateEP7QObjectiiPPv+0x327) [0xb7369f97]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN11QMetaObject8activateEP7QObjectPKS_iPPv+0x3b) [0xb736ac0b]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN6QTimer7timeoutENS_14QPrivateSignalE+0x35) [0xb73f3815]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN6QTimer10timerEventEP11QTimerEvent+0x4b) [0xb7378bbb]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN7QObject5eventEP6QEvent+0xb4) [0xb736c2e4]
+/opt/Qt5.4.1/5.4/gcc/lib/libQt5Core.so.5(_ZN23QCoreApplicationPrivate13notify_helperEP7QObjectP6QEvent+0x89) [0xb73340f9]
+

@@ -2,7 +2,7 @@
 #define MAINMUTUAL_H
 
 #include <QObject>
-#include "sql/cblacklistsql.h"
+#include "sql/sqlrequesthandle.h"
 class MainMutual : public QObject
 {
     Q_OBJECT
