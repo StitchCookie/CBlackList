@@ -2,30 +2,28 @@
 #include <QEventLoop>
 
 httpClientHandle::httpClientHandle():
-    m_pThread(nullptr)
-  ,m_NetManager(nullptr)
+    m_NetManager(nullptr)
   ,m_redisStatus(false)
 {
-    m_pThread = new QThread();
-    this->moveToThread(m_pThread);
+    this->moveToThread(&m_pThread);
     setRedisDatabase(m_baseInfo.loaclRedis.redisIp
                      ,m_baseInfo.loaclRedis.redisPort
                      ,m_baseInfo.loaclRedis.redisNo
                      , m_baseInfo.loaclRedis.redisPasswd
-
                      ,m_baseInfo.loaclRedis.existTime);
-
     if(connectRedis())
-        qDebug()<<"Redis connect successed!!!";
+    {
+        qDebug()<<"本地Redis 连接成功（长连接）!!!";
+    }
+    m_pThread.start();
+    connect(&m_pThread,&QThread::started,this,&httpClientHandle::dealPost);
 
-    connect(m_pThread, SIGNAL(started()), this, SLOT(dealPost()));
-    qDebug()<<"http request success";
-    m_pThread->start();
+    qDebug()<<"http 构造 success";
+
 }
 
 void httpClientHandle::packRequset(QByteArray &postdata)
 {
-    qDebug()<<"-0-----------------0"<<m_qqueueData.size();
     m_LineGrantrySQLData = m_qqueueData.dequeue();
     m_map["checkType"] = 7;
     m_map["cpcCardId"] = "";
@@ -35,9 +33,9 @@ void httpClientHandle::packRequset(QByteArray &postdata)
     m_map["obuId"] = m_LineGrantrySQLData.obuid;
     m_map["stationId"] = m_baseInfo.laneBase_Info.statinid;
     postdata = QJsonDocument(QJsonObject::fromVariantMap(m_map)).toJson(QJsonDocument::Compact);
-    qDebug()<<"current json request data:"<<postdata;
-    qDebug()<<"current json request  plate car data:"<<m_LineGrantrySQLData.license;
-    qDebug()<<"-0-----------------0"<<m_qqueueData.size();
+    //    qDebug()<<"current json request data:"<<postdata;
+    //    qDebug()<<"current json request  plate car data:"<<m_LineGrantrySQLData.license;
+    //    qDebug()<<"-0-----------------0"<<m_qqueueData.size();
 }
 
 void httpClientHandle::setRedisDatabase(QString m_ip, int m_port, int m_No, QString m_Passwd, int m_exitTime)
@@ -53,7 +51,6 @@ void httpClientHandle::setRedisDatabase(QString m_ip, int m_port, int m_No, QStr
 bool httpClientHandle::connectRedis()
 {
     m_ctx = redisConnect(m_ip.toStdString().c_str(),m_port);
-    qDebug()<<"ip"<<m_ip<<"port"<<m_port;
     if(m_ctx == nullptr || m_ctx->err)
     {
         if(m_ctx)
@@ -117,13 +114,12 @@ QString httpClientHandle::Utf8hexqstringToGbkhexqstring(const QString &text)
 }
 void httpClientHandle::dealPost()
 {
-    qDebug()<<"dealPost m_qqueueData isEmpty:"<<m_qqueueData.isEmpty();
-    qDebug()<<"dealPost m_qqueueData isSize:"<<m_qqueueData.size();
+    qDebug()<<"http 客户端 线程地址:"<<QThread::currentThreadId();
     while(true){
-        while(!m_qqueueData.isEmpty()){
+        QThread::msleep(5);
+        if(!m_qqueueData.isEmpty()){
             QByteArray m_bytearray;
             packRequset(m_bytearray);
-            qDebug()<<"http client Thread id:"<<QThread::currentThreadId();
             QTimer timer;
             timer.setInterval(1000 * 60 * m_baseInfo.cBlackListRequest.requestOvertime);
             timer.setSingleShot(true);
@@ -154,8 +150,8 @@ void httpClientHandle::dealPost()
                     if(m_reply->attribute(QNetworkRequest::HttpStatusCodeAttribute) == 200)
                     {
                         replyCount = m_reply->readAll();
-                        qDebug()<<"response data : "<<replyCount;
-                        qDebug()<<"request Data :"<<m_bytearray;
+                        //qDebug()<<"response data : "<<replyCount;
+                        //qDebug()<<"request Data :"<<m_bytearray;
 
                         if(false == dealData(replyCount,jsondata)){
 
@@ -184,9 +180,9 @@ void httpClientHandle::dealPost()
 httpClientHandle::~httpClientHandle()
 {
     redisFree(m_ctx);
-    m_pThread->quit();
-    m_pThread->wait();
-    m_pThread->deleteLater();
+    m_pThread.quit();
+    m_pThread.wait();
+    m_pThread.deleteLater();
 }
 
 

@@ -102,9 +102,9 @@ int main(int argc, char *argv[])
     }
     vLogDebug("系统配置文件读取成功");
     qDebug("系统配置文件读取成功");
-    //HttpStartListen::getInstance().start(6666,apihandler::getInstance().handler);
-    sqlRequestHandle *sqlDatabase = new sqlRequestHandle;
-    httpClientHandle *requesthandle = new httpClientHandle;
+    qDebug()<<"主线程 id:"<<QThread::currentThreadId();
+    sqlRequestHandle::getInstance();
+    httpClientHandle::getInstance();
     HttpStartListen::getInstance().start(m_baseInfo.cBLackResponse.responsePort,apihandler::getInstance().handler);
     return a.exec();
 }

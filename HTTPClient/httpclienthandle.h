@@ -23,7 +23,12 @@ class httpClientHandle : public QObject
 {
     Q_OBJECT
 public:
-    explicit httpClientHandle();
+    static httpClientHandle* getInstance()
+    {
+        static httpClientHandle task; //会用当前的无参构造
+        return &task;
+    }
+
     bool dealData(const QByteArray &array,QJsonObject &jsondata);
     void packRequset(QByteArray &postdata);
     void setRedisDatabase(QString m_ip,int m_port,int m_No,QString m_Passwd,int m_exitTime);
@@ -38,14 +43,16 @@ public:
     ~httpClientHandle();
 
 signals:
-
 public slots:
     void dealPost();
 
 private:
+    explicit httpClientHandle();
+    httpClientHandle(const httpClientHandle& T) = delete;
+    httpClientHandle& operator=(const httpClientHandle& T)=delete;
     QVariantMap m_map;
     /* 工作线程 */
-    QThread* m_pThread;
+    QThread m_pThread;
     /**/
     QNetworkAccessManager   *m_NetManager;
     QString                 m_URL;

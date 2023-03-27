@@ -17,8 +17,6 @@ CBlackListSql::CBlackListSql(QObject *parent) : QObject(parent)
  */
 bool CBlackListSql::setConnectBase(QString ip, quint16 port, QString user, QString passwd, QString databaseName,QString type)
 {
-    QStringList sqlDrivers = QSqlDatabase::drivers();
-    qDebug()<<sqlDrivers<<__FILE__;
     DB = QSqlDatabase::addDatabase(type);
     DB.setHostName(ip);
     DB.setPort(port);
