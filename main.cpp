@@ -56,7 +56,7 @@ void dump(int signo)
 
 int CheckOnly()
 {
-    const char filename[]  = "/root/Desktop/BlackLock1";
+    const char filename[]  = "/root/Desktop/BlackLock";
     int fd = open (filename, O_WRONLY | O_CREAT, 0644);
     int flock = lockf(fd, F_TLOCK, 0);
 

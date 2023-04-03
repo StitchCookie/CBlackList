@@ -30,11 +30,8 @@ void HttpRequest::readFromSocket(QTcpSocket* pSocket)
 void HttpRequest::readRequest(QTcpSocket* pSocket)
 {
     int nToRead = MAX_REQUEST_SIZE - m_nCurrentSize + 1;
-    qDebug()<<"MAX_REQUSE_SIZE = "<<MAX_REQUEST_SIZE <<"m_nCurrentSize = "<<m_nCurrentSize;
     m_baReqLineBuf.append(pSocket->readLine(nToRead));
     m_nCurrentSize += m_baReqLineBuf.size();
-    qDebug()<<"开始读取请求行数据:";
-    qDebug()<<"MAX_REQUSE_SIZE = "<<MAX_REQUEST_SIZE <<"nToRead = "<<nToRead;
     if (!m_baReqLineBuf.contains('\r') && !m_baReqLineBuf.contains('\n'))
     {
         if(m_baReqLineBuf.size() > 1024)
@@ -71,12 +68,9 @@ void HttpRequest::readRequest(QTcpSocket* pSocket)
 
 void HttpRequest::readHeader(QTcpSocket* pSocket)
 {
-    qDebug()<<"MAX_REQUSE_SIZE = "<<MAX_REQUEST_SIZE <<"m_nCurrentSize = "<<m_nCurrentSize;
-    qDebug()<<"开始读取请求头数据:";
     int nToRead = MAX_REQUEST_SIZE - m_nCurrentSize + 1;
     m_baReqHeaderBuf.append(pSocket->readLine(nToRead));
     m_nCurrentSize += m_baReqHeaderBuf.size();
-    qDebug()<<"MAX_REQUSE_SIZE = "<<MAX_REQUEST_SIZE <<"nToRead = "<<nToRead;
     if (!m_baReqHeaderBuf.contains('\r') && !m_baReqHeaderBuf.contains('\n'))
     {
         if(m_baReqHeaderBuf.size() > 1024)
@@ -114,7 +108,6 @@ void HttpRequest::readHeader(QTcpSocket* pSocket)
         if (0 == m_nExpectedBodySize)
         {
             vLogDebug("HttpRequest: 本次请求无请求体.");
-            qDebug()<<"本次请求无请求体";
             m_nStatus = complete;
         }
         else if ((m_nExpectedBodySize+m_nCurrentSize) > MAX_REQUEST_SIZE)
@@ -131,7 +124,6 @@ void HttpRequest::readHeader(QTcpSocket* pSocket)
 
 void HttpRequest::readBody(QTcpSocket* pSocket)
 {
-    qDebug()<<"开始读取请求体内容:";
     //判断一个传输是否结束,一是Content-Length;二是chunked编码最后的空chunked块。但这里不考虑分块传输。
     int nToRead = m_nExpectedBodySize - m_baBodyData.size();
     QByteArray baNewData = pSocket->read(nToRead);

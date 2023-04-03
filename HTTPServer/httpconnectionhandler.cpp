@@ -38,7 +38,10 @@ HttpConnectionHandler::~HttpConnectionHandler()
     m_pThread->deleteLater();
     vLogDebug("HttpConnectionHandler (%p):销毁.", static_cast<void*>(this));
 }
-
+/**
+ * @brief HttpConnectionHandler::slt_threadFinished
+ * @note 销毁线程资源
+ */
 void HttpConnectionHandler::slt_threadFinished()
 {
     //销毁线程内创建的资源
@@ -51,14 +54,20 @@ void HttpConnectionHandler::slt_threadFinished()
         m_pSocket = nullptr;
     }
 }
-
+/**
+ * @brief HttpConnectionHandler::isBusy
+ * @return  返回当前线程工作状态
+ */
 bool HttpConnectionHandler::isBusy()
 {
     if (m_pSocket->isOpen())
         m_isBusy = true;
     return m_isBusy;
 }
-
+/**
+ * @brief HttpConnectionHandler::setBusy
+ * @param isBusy 设置当前线程状态
+ */
 void HttpConnectionHandler::setBusy(bool isBusy)
 {
     m_isBusy = isBusy;
@@ -67,17 +76,26 @@ void HttpConnectionHandler::setBusy(bool isBusy)
     else
         m_dtBusyEndTime = QDateTime::currentDateTime();
 }
-
+/**
+ * @brief HttpConnectionHandler::busyTime
+ * @return 返回线程工作时间
+ */
 qint64 HttpConnectionHandler::busyTime()
 {
     return m_dtBusyBeginTime.secsTo(QDateTime::currentDateTime());
 }
-
+/**
+ * @brief HttpConnectionHandler::idleTime
+ * @return 返回线程空闲时间
+ */
 qint64 HttpConnectionHandler::idleTime()
 {
     return m_dtBusyEndTime.secsTo(QDateTime::currentDateTime());
 }
-
+/**
+ * @brief HttpConnectionHandler::slt_handleConnection
+ * @param socketDescriptor Socket描述符 本函数需要跨线程调用时需要额外注意
+ */
 void HttpConnectionHandler::slt_handleConnection(const tSocketDescriptor socketDescriptor)
 {
     vLogDebug("HttpConnectionHandler (%p): 处理新连接,socketDescriptor=%d.",
@@ -104,7 +122,10 @@ void HttpConnectionHandler::slt_handleConnection(const tSocketDescriptor socketD
     DEL_INSTANCE(m_pCurrentRequest)
 }
 
-
+/**
+ * @brief HttpConnectionHandler::slt_read
+ * @note 开始读取数据
+ */
 void HttpConnectionHandler::slt_read()
 {
     //TODO 对于较大的数据,需要很多次读取,看看能否一次读取全部
@@ -157,13 +178,19 @@ void HttpConnectionHandler::slt_read()
         }
     }
 }
-
+/**
+ * @brief HttpConnectionHandler::slt_timeout
+ * @note 连接超时处理
+ */
 void HttpConnectionHandler::slt_timeout()
 {
     vLogDebug("HttpConnectionHandler (%p): 连接超时时间已到,断开连接.", static_cast<void*>(this));
     disconnectSocket();
 }
-
+/**
+ * @brief HttpConnectionHandler::slt_disconnected
+ * @note soket断开连接处理
+ */
 void HttpConnectionHandler::slt_disconnected()
 {
     //即使客户端漏加"Connection"="close",只要对方有断开连接,本槽也会被触发,从而被动关闭连接
@@ -172,7 +199,10 @@ void HttpConnectionHandler::slt_disconnected()
     m_Timer.stop();
     m_isBusy = false;
 }
-
+/**
+ * @brief HttpConnectionHandler::readFromSocket
+ * @note 读取数据
+ */
 void HttpConnectionHandler::readFromSocket()
 {
     if (!m_pCurrentRequest)
@@ -187,7 +217,10 @@ void HttpConnectionHandler::readFromSocket()
             m_Timer.start(READ_TIMEOUT);    //重置超时时间,以防包体数据太大时间不够
     }
 }
-
+/**
+ * @brief HttpConnectionHandler::response
+ * @note socket响应
+ */
 void HttpConnectionHandler::response()
 {
     m_Timer.stop();
@@ -219,7 +252,10 @@ void HttpConnectionHandler::response()
 
     DEL_INSTANCE(m_pCurrentRequest)
 }
-
+/**
+ * @brief HttpConnectionHandler::isCloseConnection
+ * @return 返回关闭状态
+ */
 bool HttpConnectionHandler::isCloseConnection()
 {
     //客户端明确断开连接
@@ -234,7 +270,10 @@ bool HttpConnectionHandler::isCloseConnection()
 
     return false;
 }
-
+/**
+ * @brief HttpConnectionHandler::disconnectSocket
+ * @note 服务器主动断开连接
+ */
 void HttpConnectionHandler::disconnectSocket()
 {
     vLogDebug("HttpConnectionHandler (%p): 主动发起断开连接.", static_cast<void*>(this));

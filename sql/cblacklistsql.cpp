@@ -36,7 +36,6 @@ QSqlQuery CBlackListSql::getHandleData(const QString selectSql,bool &ok)
     if(DB.open())
     {
         ok = true;
-        qDebug()<<"数据库打开成功";
     }else{
         qDebug()<<"数据库打开error"<<DB.lastError().text();
         ok = false;
@@ -48,10 +47,10 @@ QSqlQuery CBlackListSql::getHandleData(const QString selectSql,bool &ok)
         ok = false;
     }else{
         ok = true;
-        qDebug()<<"success";
     }
     DB.close();
     return query;
+
 }
 
 CBlackListSql::~CBlackListSql()

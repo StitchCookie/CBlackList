@@ -17,7 +17,10 @@ HttpConnectionHandlerPool::~HttpConnectionHandlerPool()
         DEL_INSTANCE(handler)
                 vLogDebug("HttpConnectionHandlerPool (%p): 销毁", this);
 }
-
+/**
+ * @brief HttpConnectionHandlerPool::getConnectionHandler
+ * @return 线程池返回当前可用的线程
+ */
 HttpConnectionHandler* HttpConnectionHandlerPool::getConnectionHandler()
 {
     HttpConnectionHandler* pFreeHandler = nullptr;
@@ -30,7 +33,7 @@ HttpConnectionHandler* HttpConnectionHandlerPool::getConnectionHandler()
             if (handler && !handler->isBusy())
             {
                 pFreeHandler = handler;
-                pFreeHandler->setBusy(true);
+                pFreeHandler->setBusy();
                 break;
             }
         }
@@ -45,7 +48,7 @@ HttpConnectionHandler* HttpConnectionHandlerPool::getConnectionHandler()
             }
             else
             {
-                // vLogError("HttpConnectionHandlerPool: get free connection handler fail!");
+                vLogDebug("HttpConnectionHandlerPool: 最大可支持同时请求数量%d",m_baseInfo.cBLackResponse.MAX_ERUPT);
             }
         }
     }
@@ -63,7 +66,10 @@ HttpConnectionHandler* HttpConnectionHandlerPool::getConnectionHandler()
     m_Mutex.unlock();
     return pFreeHandler;
 }
-/*每秒钟对空闲的hander进行移除*/
+/**
+ * @brief HttpConnectionHandlerPool::slt_cleanup
+ * @note 每秒钟对空闲的hander进行移除
+ */
 void HttpConnectionHandlerPool::slt_cleanup()
 {
     m_Mutex.lock();

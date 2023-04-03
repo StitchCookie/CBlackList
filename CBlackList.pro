@@ -9,6 +9,7 @@ CONFIG(debug,debug|release){
 }else{
     TARGET = BlackList
 }
+
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -30,7 +31,7 @@ SOURCES += \
         HTTPServer/requesthandler.cpp \
         HTTPServer/utilities.cpp \
         apihandler.cpp \
-        icreadergui.cpp \
+        CBlack.cpp \
         logrecord/logrecord.cpp \
         main.cpp \
         pub/systemconfig.cpp \
@@ -59,7 +60,7 @@ HEADERS += \
     HTTPServer/requesthandler.h \
     HTTPServer/utilities.h \
     apihandler.h \
-    icreadergui.h \
+    CBlack.h \
     logrecord/logrecord.h \
     pub/systemconfig.h \
     sql/cblacklistsql.h \

@@ -6,7 +6,7 @@
 #include <QMutex>
 #include <qatomic.h>
 #include <QQueue>
-#define SySConfigPATH "../c_black_Configinfo.ini"
+#define SySConfigPATH "./c_black_Configinfo.ini"
 
 #pragma pack(1)
 /*Lane Info*/
@@ -54,9 +54,10 @@ struct CBLackResponseInfo
 {
     QString responseAddr;
     quint16 responsePort;
+    quint8  MAX_ERUPT;
     CBLackResponseInfo(){
         responseAddr.clear();
-        responsePort = 9527;
+        MAX_ERUPT = 5;
     }
 };
 

@@ -28,22 +28,25 @@ public:
         static httpClientHandle task; //会用当前的无参构造
         return &task;
     }
-
+    /*将字节数组转为json对象*/
     bool dealData(const QByteArray &array,QJsonObject &jsondata);
+    /*生成请求格式的数据*/
     void packRequset(QByteArray &postdata);
+    /*设置本地Reids数据库的连接信息*/
     void setRedisDatabase(QString m_ip,int m_port,int m_No,QString m_Passwd,int m_exitTime);
+    /*连接Redis*/
     bool connectRedis();
+    /*重新连接Redis*/
+    void restartConnectRedis();
+    /*gbk编码的16进制转字符串*/
     QString Utf8hexqstringToGbkhexqstring(const QString &text);
-
-
-    /*线程工作状态*/
-    bool isBusy();
-    /**/
-    void setBusy(bool isBusy = true);
+    /*Redis执行命令*/
+    int execRedisCommand(redisContext* connect_handle,const char* cmd);
     ~httpClientHandle();
 
 signals:
 public slots:
+    /*处理http请求*/
     void dealPost();
 
 private:
@@ -67,6 +70,7 @@ private:
     int m_exitTime;
     redisContext *m_ctx;
     LineGrantrySQLData m_LineGrantrySQLData;
+    static int restart_redis_count;
 private slots:
 };
 #endif // HTTPCLIENTHANDLE_H

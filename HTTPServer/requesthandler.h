@@ -15,10 +15,12 @@ struct Http_Request_Info
 {
     QString path;
     QString body;
+    QString ip;
     Http_Request_Info()
     {
         path.clear();
         body.clear();
+        ip.clear();
     }
 };
 

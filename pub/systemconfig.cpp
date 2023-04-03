@@ -1,6 +1,7 @@
 #include "systemconfig.h"
 #include <QSettings>
 #include "logrecord/logrecord.h"
+#include <QDebug>
 bool SystemConfig::set_Mysql_info(BaseInfo& baseInfo)
 {
     QSettings *sysconfig = new QSettings(SySConfigPATH, QSettings::IniFormat);
@@ -21,7 +22,7 @@ bool SystemConfig::set_Mysql_info(BaseInfo& baseInfo)
         return false;
     }
     baseInfo.grantrayMysqlConfig.intervalTime = baseInfo.grantrayMysqlConfig.intervalTime > 3 ? 3 : baseInfo.grantrayMysqlConfig.intervalTime;
-    baseInfo.grantrayMysqlConfig.scopeTime    = baseInfo.grantrayMysqlConfig.scopeTime    > 10 ? 10 : baseInfo.grantrayMysqlConfig.scopeTime;
+    baseInfo.grantrayMysqlConfig.scopeTime    = baseInfo.grantrayMysqlConfig.scopeTime    > 20 ? 20 : baseInfo.grantrayMysqlConfig.scopeTime;
 
     return true;
 
@@ -46,8 +47,19 @@ bool SystemConfig::set_HttpRequest_info(BaseInfo& baseInfo)
 bool SystemConfig::set_HttpResponse_info(BaseInfo& baseInfo)
 {
     QSettings *sysconfig =new QSettings(SySConfigPATH,QSettings::IniFormat);
-    baseInfo.cBLackResponse.responseAddr=sysconfig->value("HTTPRESPONCE/responseAddr").toString();
-    baseInfo.cBLackResponse.responsePort=static_cast<quint16>(sysconfig->value("HTTPRESPONCE/responseIp").toUInt());
+
+    QStringList addr =sysconfig->value("HTTPRESPONCE/responseAddr").toString().split(":");
+    if(addr.size() == 3)
+    {
+        QStringList temmD =addr.at(2).split("/");
+        QString portInfo = temmD.at(0);
+        temmD.removeFirst();
+        QString address = temmD.join("/");
+        baseInfo.cBLackResponse.responseAddr.append("/");
+        baseInfo.cBLackResponse.responseAddr.append(address);
+        baseInfo.cBLackResponse.responsePort = static_cast<quint16>(portInfo.toInt());
+    }
+    baseInfo.cBLackResponse.MAX_ERUPT=static_cast<quint8>(sysconfig->value("HTTPRESPONCE/MAX_ERUPT").toUInt());
     delete  sysconfig;
     if(baseInfo.cBLackResponse.responseAddr.isEmpty())
     {

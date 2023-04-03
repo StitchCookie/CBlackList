@@ -15,7 +15,8 @@ sqlRequestHandle::sqlRequestHandle()
     m_selectSql = QString("select CONCAT(CPUNetID,CPUCardId),OBUIssueID,VehiclePlate from `%1` where TransTime between date_add(now(), interval - %2 minute) and now()AND CPUNetID is not NULL AND CPUNetID!='0000' LIMIT 500;")
             .arg(m_baseInfo.grantrayMysqlConfig.tableName)
             .arg(m_baseInfo.grantrayMysqlConfig.scopeTime);
-    qDebug()<<"mysql 构造成功";
+    qDebug()<<"mysql造成功";
+
 }
 
 QString sqlRequestHandle::Utf8hexqstringToGbkhexqstring(const QString &text)
@@ -23,7 +24,7 @@ QString sqlRequestHandle::Utf8hexqstringToGbkhexqstring(const QString &text)
 
     {
         QTextCodec *tc = QTextCodec::codecForName("GBK");
-        // 将Hex字符串转换为Ascii字符串
+        // 将Hex字符串Ascii字符串
         QString temp;
         QByteArray ascii_data;
         // QStringList temp_list = text.split('0', QString::SkipEmptyParts);
@@ -57,6 +58,11 @@ void sqlRequestHandle::sqlThreadWorking()
 }
 sqlRequestHandle::~sqlRequestHandle()
 {
+    if(m_interverTime != nullptr)
+    {
+        m_interverTime->stop();
+        m_interverTime->deleteLater();
+    }
     m_thread.quit();
     m_thread.wait();
     m_thread.deleteLater();
@@ -92,14 +98,13 @@ void sqlRequestHandle::dealSqlData()
         // m_bytearray = QJsonDocument(QJsonObject::fromVariantMap(m_map)).toJson(QJsonDocument::Compact);
         //qDebug()<<m_bytearray.toHex();
         //qDebug()<<QByteArray::fromHex(m_bytearray.toHex());
+        /*使用全局队列，本程序不需要加读写锁，只有两个线程进行队尾插入 队列读取*/
         m_data.etcCardId = m_query.value(0).toString();
         m_data.obuid = m_query.value(1).toString();
         m_data.license = m_query.value(2).toString();
-        m_qqueueData.enqueue(m_data);
-        // qDebug()<<"enqueue size is :"<<m_qqueueData.size();
+        if(m_qqueueData.size() < 4000)
+            m_qqueueData.enqueue(m_data);
     }
     m_interverTime->setInterval(m_baseInfo.grantrayMysqlConfig.intervalTime * 1000 * 60);
     m_interverTime->start();
 }
-
-

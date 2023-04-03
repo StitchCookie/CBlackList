@@ -10,7 +10,7 @@
 #include <QJsonArray>
 #include "HTTPServer/utilities.h"
 #include "HTTPServer/requesthandler.h"
-#include "icreadergui.h"
+#include "CBlack.h"
 #include "logrecord/logrecord.h"
 #include "Define.h"
 class apihandler : public QObject, public enable_singleton<apihandler>

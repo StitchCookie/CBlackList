@@ -1,0 +1,37 @@
+[BASELINE]
+provId=31
+stationId=2080004
+laneid=1101
+[MYSQL]
+ip=10.1.6.165
+port=3306
+user=root
+passwd=123456
+databaseName=etcmj
+tableName=dfs_gantry_transaction
+#数据库扫描时间间隔  要小于下面的时间差，建议相差1分钟即可 否则会造成数据重复读取
+intervalTime=1
+#数据库扫描时间距当前时间分差
+scopeTime=20
+
+[HTTPREQUSET]
+url=http://10.1.6.165:6666/lane-driver-service/api/reader/CBlackList
+#HTTP请求超时时间 单位分钟 最大3分钟
+requestOvertime=1
+
+[HTTPRESPONCE]
+responseAddr=http://10.1.6.150:36957/lane-driver-service/api/checktatus/CBlackList
+#最大并发数
+MAX_ERUPT=5
+[REDIS]
+ip=10.1.6.166
+port=6379
+passwd=redis
+redisNo=15
+exitTime=5
+[SWITCH]
+#0 不使用密码登录
+redis_UsePassd = 0
+
+
+

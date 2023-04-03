@@ -16,23 +16,21 @@ int apihandler::handler(const Http_Request_Info & req, Http_Respone_Info & reply
 {
     //解析请求地址
     QStringList pathList = req.path.split('/');
-    if(pathList.length() != 5)
+    if(pathList.length() != m_baseInfo.cBLackResponse.responseAddr.split("/").size())
     {
-          vLogDebug("[ApiHandler] 请求地址出错: %s", req.path.toUtf8().data());
-          qDebug()<<"请求地址失败:";
+        vLogDebug("[ApiHandler] 请求地址出错: %s", req.path.toUtf8().data());
         respone(-1, "{\"info\":\"请求地址出错\"}", "null", "null", reply);
         return reply.code;
     }
-
-    QString API_Type = pathList.at(3);
-    QString API_Name = pathList.at(4);
+    QString API_Name = pathList.last();
+    QString API_Type = pathList.at(pathList.size() - 1);
     QString carPlate = req.body;
-        QByteArray p_OutputData = "";
-        int ret = ToolIcreader::getInstance().IC_API(API_Name, carPlate, p_OutputData);
-        respone(ret == 0 ? 0 : 1, p_OutputData, API_Type, API_Name, reply);
+    QByteArray p_OutputData = "";
+    int ret = CBlack::getInstance().IC_API(API_Name, carPlate, p_OutputData);
+    respone(ret == 0 ? 0 : 1, p_OutputData, API_Type, API_Name, reply);
 
 
-        return reply.code;
+    return reply.code;
 }
 
 

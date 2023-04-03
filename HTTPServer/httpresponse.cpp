@@ -49,8 +49,6 @@ bool HttpResponse::writeToSocket(QByteArray baData)
     {
         if (m_pSocket->bytesToWrite() > (16*1024))
             m_pSocket->waitForBytesWritten(-1); //待发送数据过大时，加等待操作
-
-        qDebug()<<"发送的数据"<<pData;
         qint64 written = m_pSocket->write(pData, nRemaining);
         if (written == -1)
             return false;
@@ -64,10 +62,8 @@ bool HttpResponse::writeToSocket(QByteArray baData)
 
 void HttpResponse::writeHeaders()
 {
-    qDebug()<<"HttpResponse: 响应头已发送,不再重复发送";
     if(m_isSentHeaders)
     {
-        qDebug()<<"HttpResponse: 响应头已发送,不再重复发送";
         vLogError("HttpResponse: 响应头已发送,不再重复发送.");
         return;
     }
@@ -83,10 +79,8 @@ void HttpResponse::writeHeaders()
         buffer.append(": ");
         buffer.append(headers.value(name));
         buffer.append("\r\n");
-        qDebug()<<name<<headers.value(name);
     }
     buffer.append("\r\n");
-    qDebug()<<buffer;
     writeToSocket(buffer);
     m_pSocket->flush();
     m_isSentHeaders = true;
